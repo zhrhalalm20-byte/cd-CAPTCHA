@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#20a985">
+  <meta name="description" content="الاستعلام عن أرقام جلوس الثانوية العامة بالاسم الرباعي.">
+  <title>أرقام جلوس الثانوية العامة | نتائج اليمن</title>
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#top" aria-label="الرئيسية">
+        <img src="/logo.png" alt="شعار الإدارة العامة للاختبارات" class="brand-logo">
+        <span class="brand-copy"><strong>الإدارة العامة للاختبارات</strong><small>الجمهورية اليمنية</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="التنقل الرئيسي">
+        <a class="active" href="#top">الرئيسية</a>
+        <a href="#search">أرقام الجلوس</a>
+        <a href="#about">عن الخدمة</a>
+        <a href="#footer">تواصل</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="فتح القائمة">☰</button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#top">الرئيسية</a>
+      <a href="#search">أرقام الجلوس</a>
+      <a href="#about">عن الخدمة</a>
+      <a href="#footer">تواصل</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-glow glow-one"></div>
+      <div class="hero-glow glow-two"></div>
+      <div class="container hero-inner">
+        <span class="hero-badge">نظام الاستعلام عن أرقام الجلوس</span>
+        <h1>أرقام جلوس الثانوية العامة</h1>
+        <p>استعلم عن رقم الجلوس الخاص بك باستخدام الاسم الرباعي والعام الدراسي.</p>
+        <a href="#search" class="hero-cta">ابدأ الاستعلام <span>←</span></a>
+      </div>
+    </section>
+
+    <section class="search-section" id="search">
+      <div class="container narrow">
+        <div class="search-card">
+          <div class="card-heading">
+            <div class="icon-box">🎓</div>
+            <h2>بيانات الاستعلام</h2>
+            <p>يرجى إدخال بيانات الطالب بدقة كما هي مسجلة.</p>
+          </div>
+
+          <form id="searchForm" novalidate>
+            <div class="field">
+              <label for="academicYear">العام الدراسي</label>
+              <div class="input-wrap select-wrap">
+                <span class="field-icon">▣</span>
+                <select id="academicYear" name="academic_year" required>
+                  <option value="" selected disabled>اختر العام الدراسي</option>
+                  <option value="2025/2026">2025/2026</option>
+                  <option value="2024/2025">2024/2025</option>
+                  <option value="2023/2024">2023/2024</option>
+                  <option value="2022/2023">2022/2023</option>
+                  <option value="2021/2022">2021/2022</option>
+                  <option value="2020/2021">2020/2021</option>
+                  <option value="2019/2020">2019/2020</option>
+                  <option value="2018/2019">2018/2019</option>
+                  <option value="2017/2018">2017/2018</option>
+                  <option value="2016/2017">2016/2017</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="studentName">اسم الطالب الرباعي</label>
+              <div class="input-wrap">
+                <span class="field-icon">♙</span>
+                <input id="studentName" name="student_name" type="text" autocomplete="name" maxlength="150" placeholder="مثال: محمد أحمد علي محمد" required>
+              </div>
+              <small>اكتب الاسم كاملًا وبنفس الترتيب المسجل في البيانات الرسمية.</small>
+            </div>
+
+            <button class="search-btn" id="searchButton" type="submit">
+              <span id="buttonText">استعلام عن رقم الجلوس <b>←</b></span>
+              <span id="loader" class="spinner hidden" aria-hidden="true"></span>
+            </button>
+          </form>
+
+          <div id="message" class="message hidden" role="alert"></div>
+
+          <section id="result" class="result hidden" aria-live="polite">
+            <div class="result-top">
+              <div><span>نتيجة الاستعلام</span><strong>تم العثور على البيانات</strong></div>
+              <span class="verified">✓ نتيجة مستلمة</span>
+            </div>
+            <div class="seat-highlight">
+              <span>رقم الجلوس</span>
+              <strong id="seatNumber">—</strong>
+            </div>
+            <div class="result-grid">
+              <div><span>اسم الطالب</span><strong id="resultName">—</strong></div>
+              <div><span>العام الدراسي</span><strong id="resultYear">—</strong></div>
+              <div id="psnRow" class="hidden"><span>PSN</span><strong id="resultPsn">—</strong></div>
+            </div>
+            <div class="result-actions">
+              <button type="button" id="copyButton">نسخ رقم الجلوس</button>
+              <button type="button" id="printButton">طباعة النتيجة</button>
+              <button type="button" id="newSearchButton">استعلام جديد</button>
+            </div>
+          </section>
+
+          <div class="trust-row">
+            <div><span>✓</span> اتصال عبر الخادم</div>
+            <div><span>⚡</span> استعلام مباشر</div>
+            <div><span>🔒</span> لا نحفظ بيانات البحث</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div>
+          <span class="section-kicker">عن الخدمة</span>
+          <h2>واجهة حديثة للبحث مع إبقاء مصدر البيانات الرسمي.</h2>
+          <p>الواجهة هنا منفصلة عن منطق البحث. عند الضغط على الاستعلام، يتولى الخادم الاتصال بصفحة البحث الرسمية، الحصول على جلسة الحماية ورمز CSRF، ثم تنفيذ الاستعلام وإرجاع النتيجة للواجهة.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-item"><b>01</b><span>اختر العام الدراسي</span></div>
+          <div class="about-item"><b>02</b><span>أدخل الاسم الرباعي</span></div>
+          <div class="about-item"><b>03</b><span>اعرض رقم الجلوس</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="container footer-inner">
+      <div><strong>نتائج اليمن</strong><p>خدمة بحث إلكترونية بواجهة مستقلة.</p></div>
+      <div class="developer">تطوير وبرمجة: <strong>كهلان زيد الاشول</strong></div>
+      <div>جميع الحقوق محفوظة © 2026</div>
+    </div>
+  </footer>
+
+  <div class="toast hidden" id="toast"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
